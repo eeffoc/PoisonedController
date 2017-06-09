@@ -10,6 +10,8 @@
 	<meta name="author" content="Markus Olszewski">
 
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
@@ -25,30 +27,65 @@
 		<iframe id="chatiframe"
 			frameborder="0"
 			scrolling="no"
+			width="300"
 			id="archonthewizard"
 			src="http://www.twitch.tv/archonthewizard/chat">
 		</iframe>
 		<div class=oauth id=oauth1>
-			<p>Authenticate Login:<p>
-			<form>
-				Your Twitch Username:<br>
-				<input type="text" id="twitchusername1"><br>
-				Your oauth:<br>
-				<input type="text" id="twitchoauth1">
+			<div class="alignleft">
+				<p class="loginoption">USE ACCOUNT</p>
+			</div>
+			<form class=loginform>
+				<label>
+					Your Twitch Username:
+					<input type="text" class="loginbox" id="twitchusername1">
+				</label>
+				<label>
+					Your OAuth (oauth:xxxxx):
+					<input type="text" class="loginbox" id="twitchoauth1">
+				</label>
 			</form>
-			<a href="https://twitchapps.com/tmi/">Get oauth from here</a>
-			<button name=oauth onclick="oauth1()">Authenticate</button>
+			<button class="oauthbtn" onclick="oauth1()">Authenticate Account 1</button>
+			<p><a href="https://twitchapps.com/tmi/" target="_blank">(Get your OAuth from here)</a></p>
 		</div>
 		<div class=oauth id=oauth2>
-			<p>Click to Authenticate<p>
-			<button name=oauth>click</button>
+			<div class="alignleft">
+				<p class="loginoption">USE ACCOUNT</p>
+				<p class="loginoption">USE MERC</p>
+			</div>
+			<form class=loginform>
+				<label>
+					Your Twitch Username:
+					<input type="text" class="loginbox" id="twitchusername2">
+				</label>
+				<label>
+					Your OAuth (oauth:xxxxx):
+					<input type="text" class="loginbox" id="twitchoauth2">
+				</label>
+			</form>
+			<button class="oauthbtn" onclick="oauth2()">Authenticate Account 2</button>
+			<p><a href="https://twitchapps.com/tmi/" target="_blank">(Get your OAuth from here)</a></p>
 		</div>
 		<div class=oauth id=oauth3>
-			<p>Click to Authenticate<p>
-			<button name=oauth>click</button>
+			<div class="alignleft">
+				<p class="loginoption">USE ACCOUNT</p>
+				<p class="loginoption">USE MERC</p>
+			</div>
+			<form class=loginform>
+				<label>
+					Your Twitch Username:
+					<input type="text" class="loginbox" id="twitchusername3">
+				</label>
+				<label>
+					Your OAuth (oauth:xxxxx):
+					<input type="text" class="loginbox" id="twitchoauth3">
+				</label>
+			</form>
+			<button class="oauthbtn" onclick="oauth3()">Authenticate Account 3</button>
+			<p><a href="https://twitchapps.com/tmi/" target="_blank">(Get your OAuth from here)</a></p>
 		</div>
 		<div id=stats>
-			<p>Some Stats<p>
+			<p>Some Stats</p>
 			<button>click</button>
 		</div>
 	</section>

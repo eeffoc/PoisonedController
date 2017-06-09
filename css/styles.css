@@ -1,3 +1,8 @@
+html {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+}
+
 body {
 	background-image: url("../img/bg.png");
 	background-repeat: repeat;
@@ -5,14 +10,12 @@ body {
 
 .container {
 	display: grid;
-	grid-template-columns: auto 350px auto;
-	grid-template-rows: 32% 32% 32%;
+	grid-template-columns: auto 300px auto;
+	grid-template-rows: auto auto auto;
 	grid-template-areas:
 	"videoiframe chatiframe oauth1"
 	"videoiframe chatiframe oauth2"
 	"stats       chatiframe oauth3";
-
-
 }
 
 .oauth {
@@ -21,6 +24,45 @@ body {
 	margin: 0px 0px 10px 20px;
 	background-image: url("../img/box_bg.png");
 	background-repeat: repeat;
+	text-align: center;
+}
+
+.loginbox {
+	border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+.loginform {
+	text-align: left;
+	margin: 0px 20px 0px 20px;
+}
+
+.loginform label {
+  margin-bottom: 20px;
+	display: block;
+}
+
+.oauthbtn {
+	padding: 14px;
+	font-size: 16px;
+	outline: 1px solid black;
+	background-color: white;
+}
+
+.loginoption {
+	display: inline-block;
+	font-weight: bold;
+	padding: 10px 10px 10px 20px;
+}
+
+.loginoption:hover {
+	text-shadow: 0px 2px 20px #000000;
+}
+
+.alignleft {
+	text-align: left;
 }
 
 #videoiframe {
@@ -36,7 +78,7 @@ body {
 	grid-area: chatiframe;
 	width: 100%;
 	height: 100%;
-	min-width: 330px;
+	min-width: 300px;
 	min-height: 700px;
 	margin: 0px 10px 0px 10px;
 }
