@@ -1,0 +1,48 @@
+.container {
+	display: grid;
+	grid-template-columns: auto 300px 400px;
+	grid-template-rows: 250px 250px 250px;
+	grid-template-areas:
+	"videoiframe chatiframe oauth1"
+	"videoiframe chatiframe oauth2"
+	"stats       chatiframe oauth3";
+	
+}
+	
+.oauth {
+	width: 395px;
+	height: 245px;
+}
+
+#videoiframe {
+	grid-area: videoiframe;
+	width: 100%;
+	height: 100%;
+}
+
+#chatiframe {
+	grid-area: chatiframe;
+}
+
+#oauth1 {
+	grid-area: oauth1;
+	background-color:yellow;
+}
+
+#oauth2 {
+	grid-area: oauth2;
+	background-color:orange;
+}
+
+#oauth3 {
+	grid-area: oauth3;
+	background-color:blue;
+}
+
+#stats {
+	grid-area: stats;
+	background-color:pink;
+}
+
+
+

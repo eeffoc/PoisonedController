@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Stream Defence - Poisoned Controller</title>
+	<meta name="description" content="Free Web tutorials">
+	<meta name="keywords" content="Controller, Tower Defence, Twitch, ArchonTheWizard, Stream Defence">
+	<meta name="author" content="Markus Olszewski">
+
+	<link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+
+<body>
+	<script src="js/script.js"></script>
+	
+	<section class="container">
+		<iframe id="videoiframe"
+			src="http://player.twitch.tv/?channel=archonthewizard"
+			frameborder="0"
+			scrolling="no"
+			allowfullscreen="true"
+			height="405" 
+			width="720">
+		</iframe>
+		<iframe id="chatiframe"
+			frameborder="0" 
+			scrolling="no" 
+			id="archonthewizard" 
+			src="http://www.twitch.tv/archonthewizard/chat" 
+			height="750" 
+			width="300">
+		</iframe>
+		<div class=oauth id=oauth1>
+			<p>Authenticate Login:<p>
+			<form>
+				Your Twitch Username:<br>
+				<input type="text" id="twitchusername1"><br>
+				Your oauth:<br>
+				<input type="text" id="twitchoauth1">
+			</form>
+			<a href="https://twitchapps.com/tmi/">Get oauth from here</a>
+			<button name=oauth onclick="oauth1()">Authenticate</button>
+		</div>
+		<div class=oauth id=oauth2>
+			<p>Click to Authenticate<p>
+			<button name=oauth>click</button>
+		</div>
+		<div class=oauth id=oauth3>
+			<p>Click to Authenticate<p>
+			<button name=oauth>click</button>
+		</div>
+		<div id=stats>
+			<p>Some Stats<p>
+			<button>click</button>
+		</div>
+	</section>
+</body>
+</html>
