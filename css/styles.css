@@ -1,48 +1,62 @@
+body {
+	background-image: url("../img/bg.png");
+	background-repeat: repeat;
+}
+
 .container {
 	display: grid;
-	grid-template-columns: auto 300px 400px;
-	grid-template-rows: 250px 250px 250px;
+	grid-template-columns: auto 350px auto;
+	grid-template-rows: 32% 32% 32%;
 	grid-template-areas:
 	"videoiframe chatiframe oauth1"
 	"videoiframe chatiframe oauth2"
 	"stats       chatiframe oauth3";
-	
+
+
 }
-	
+
 .oauth {
-	width: 395px;
-	height: 245px;
+	min-width: 300px;
+	min-height: 230px;
+	margin: 0px 0px 10px 20px;
+	background-image: url("../img/box_bg.png");
+	background-repeat: repeat;
 }
 
 #videoiframe {
 	grid-area: videoiframe;
 	width: 100%;
 	height: 100%;
+	min-width: 620px;
+	min-height: 350px;
+	margin: 0px 10px 10px 0px;
 }
 
 #chatiframe {
 	grid-area: chatiframe;
+	width: 100%;
+	height: 100%;
+	min-width: 330px;
+	min-height: 700px;
+	margin: 0px 10px 0px 10px;
 }
 
 #oauth1 {
 	grid-area: oauth1;
-	background-color:yellow;
 }
 
 #oauth2 {
 	grid-area: oauth2;
-	background-color:orange;
 }
 
 #oauth3 {
 	grid-area: oauth3;
-	background-color:blue;
+	margin-bottom: 0px;
 }
 
 #stats {
 	grid-area: stats;
-	background-color:pink;
+	background-image: url("../img/box_bg.png");
+	background-repeat: repeat;
+	margin: 10px 0px 0px 0px;
 }
-
-
-
