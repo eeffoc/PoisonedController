@@ -5,6 +5,17 @@ var joinedChannelBool1 = false;
 var joinedChannelBool2 = false;
 var joinedChannelBool3 = false;
 
+var sendThroughWhisper = false;
+
+function messageManager (message, ws){
+	var newMessage = "!".concat(message);
+	if(sendThroughWhisper == true){
+		sendWhisper(newMessage, ws);
+	} else {
+		sendMessage(newMessage, ws);
+	}
+}
+
 function sendMessage (message, ws){
 	ws.send('PRIVMSG #' + channel + ' :' + message);
 }
@@ -28,11 +39,11 @@ function setClassRanks (playerID, playerNick, msg){
 		msg = msg.replace(/] /g, "");
 		msg = msg.replace("]", ""); //Last element of array which doesn't have a " " after "]"
 		var classRanksArray = msg.split('[');
-		console.log(classRanksArray); //Testing
+		//Ignore position 0 as it's an empty string
 		document.getElementById("archerRank" + playerID).innerHTML = classRanksArray[1];
 		document.getElementById("rougeRank" + playerID).innerHTML = classRanksArray[2];
-		document.getElementById("fireRank" + playerID).innerHTML = classRanksArray[3];
-		document.getElementById("frostRank" + playerID).innerHTML = classRanksArray[4];
+		document.getElementById("firemageRank" + playerID).innerHTML = classRanksArray[3];
+		document.getElementById("frostmageRank" + playerID).innerHTML = classRanksArray[4];
 		document.getElementById("alchemistRank" + playerID).innerHTML = classRanksArray[5];
 		document.getElementById("bardRank" + playerID).innerHTML = classRanksArray[6];
 		document.getElementById("highpriestRank" + playerID).innerHTML = classRanksArray[7];
@@ -58,12 +69,34 @@ function joinedChannel (playerID, msg, ws){
 	}
 }
 
+function classSelectButtonClicked(buttonID){
+	var playerID = buttonID.charAt(buttonID.length - 1);
+	var className = buttonID.substring(0, buttonID.indexOf("Rank"));
+	// TODO: Find a better way of getting WebSocket than making it global.
+	switch (+playerID) {
+		case 1:
+			var wsGlobal1 = window.ws1;
+			messageManager(className, wsGlobal1);
+			break;
+		case 2:
+			var wsGlobal2 = window.ws2;
+			messageManager(className, wsGlobal2);
+			break;
+		case 3:
+			var wsGlobal3 = window.ws3;
+			messageManager(className, wsGlobal3);
+			break;
+	}
+	document.getElementById("classSelect" + playerID).style.display = "none";
+	document.getElementById("playBoard" + playerID).style.display = "grid";
+}
+
 function oauth1 (){
 	document.getElementById("oauth1").style.display = "none";
 	document.getElementById("loadingClasses1").style.display = "block";
 
 	var ws1 = new WebSocket('wss://irc-ws.chat.twitch.tv:443/irc');
-
+	window.ws1 = ws1;
 	var oauth = document.getElementById("twitchoauth1").value;
 	var nick = document.getElementById("twitchusername1").value.toLowerCase();
 
@@ -93,6 +126,7 @@ function oauth2 (){
 	document.getElementById("loadingClasses2").style.display = "block";
 
 	var ws2 = new WebSocket('wss://irc-ws.chat.twitch.tv:443/irc');
+	window.ws2 = ws2;
 
 	var oauth = document.getElementById("twitchoauth2").value;
 	var nick = document.getElementById("twitchusername2").value.toLowerCase();
@@ -123,6 +157,7 @@ function oauth3 (){
 	document.getElementById("loadingClasses3").style.display = "block";
 
 	var ws3 = new WebSocket('wss://irc-ws.chat.twitch.tv:443/irc');
+	window.ws3 = ws3;
 
 	var oauth = document.getElementById("twitchoauth3").value;
 	var nick = document.getElementById("twitchusername3").value.toLowerCase();
