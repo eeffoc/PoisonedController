@@ -87,9 +87,9 @@ body {
 	grid-template-areas:
 	"rank1 rank1 rank1 rank1 rank1 rank1 rank1"
 	"gem1 gem1 gem1 gem1 gem1 gem1 gem1"
-	"up1 t1_1 t2_1 t3_1 t4_1 altar1 targetPriority1"
-	"down1 t5_1 t6_1 t7_1 t8_1 altar1 switchClass1"
-	"train1 t9_1 t10_1 t11_1 t12_1 altar1 leave1";
+	"up1 t11 t21 t31 t41 altar1 targetPriority1"
+	"down1 t51 t61 t71 t81 altar1 switchClass1"
+	"train1 t91 t101 t111 t121 altar1 leave1";
 	margin: 0px 10px 10px 10px;
 }
 
@@ -98,18 +98,18 @@ body {
 #powerUp1 {grid-area: up1;}
 #powerDown1 {grid-area: down1;}
 #train1 {grid-area: train1;}
-#tower1_1 {grid-area: t1_1;}
-#tower2_1 {grid-area: t2_1;}
-#tower3_1 {grid-area: t3_1;}
-#tower4_1 {grid-area: t4_1;}
-#tower5_1 {grid-area: t5_1;}
-#tower6_1 {grid-area: t6_1;}
-#tower7_1 {grid-area: t7_1;}
-#tower8_1 {grid-area: t8_1;}
-#tower9_1 {grid-area: t9_1;}
-#tower10_1 {grid-area: t10_1;}
-#tower11_1 {grid-area: t11_1;}
-#tower12_1 {grid-area: t12_1;}
+#tower11 {grid-area: t11;}
+#tower21 {grid-area: t21;}
+#tower31 {grid-area: t31;}
+#tower41 {grid-area: t41;}
+#tower51 {grid-area: t51;}
+#tower61 {grid-area: t61;}
+#tower71 {grid-area: t71;}
+#tower81 {grid-area: t81;}
+#tower91 {grid-area: t91;}
+#tower101 {grid-area: t101;}
+#tower111 {grid-area: t111;}
+#tower121 {grid-area: t121;}
 #altar1 {grid-area: altar1;}
 #targetPriority1 {grid-area: targetPriority1;}
 #switchClass1 {grid-area: switchClass1;}
@@ -122,9 +122,9 @@ body {
 	grid-template-areas:
 	"rank2 rank2 rank2 rank2 rank2 rank2 rank2"
 	"gem2 gem2 gem2 gem2 gem2 gem2 gem2"
-	"up2 t1_2 t2_2 t3_2 t4_2 altar2 targetPriority2"
-	"down2 t5_2 t6_2 t7_2 t8_2 altar2 switchClass2"
-	"train2 t9_2 t10_2 t11_2 t12_2 altar2 leave2";
+	"up2 t12 t22 t32 t42 altar2 targetPriority2"
+	"down2 t52 t62 t72 t82 altar2 switchClass2"
+	"train2 t92 t102 t112 t122 altar2 leave2";
 	margin: 0px 10px 10px 10px;
 }
 
@@ -133,18 +133,18 @@ body {
 #powerUp2 {grid-area: up2;}
 #powerDown2 {grid-area: down2;}
 #train2 {grid-area: train2;}
-#tower1_2 {grid-area: t1_2;}
-#tower2_2 {grid-area: t2_2;}
-#tower3_2 {grid-area: t3_2;}
-#tower4_2 {grid-area: t4_2;}
-#tower5_2 {grid-area: t5_2;}
-#tower6_2 {grid-area: t6_2;}
-#tower7_2 {grid-area: t7_2;}
-#tower8_2 {grid-area: t8_2;}
-#tower9_2 {grid-area: t9_2;}
-#tower10_2 {grid-area: t10_2;}
-#tower11_2 {grid-area: t11_2;}
-#tower12_2 {grid-area: t12_2;}
+#tower12 {grid-area: t12;}
+#tower22 {grid-area: t22;}
+#tower32 {grid-area: t32;}
+#tower42 {grid-area: t42;}
+#tower52 {grid-area: t52;}
+#tower62 {grid-area: t62;}
+#tower72 {grid-area: t72;}
+#tower82 {grid-area: t82;}
+#tower92 {grid-area: t92;}
+#tower102 {grid-area: t102;}
+#tower112 {grid-area: t112;}
+#tower122 {grid-area: t122;}
 #altar2 {grid-area: altar2;}
 #targetPriority2 {grid-area: targetPriority2;}
 #switchClass2 {grid-area: switchClass2;}
@@ -157,9 +157,9 @@ body {
 	grid-template-areas:
 	"rank3 rank3 rank3 rank3 rank3 rank3 rank3"
 	"gem3 gem3 gem3 gem3 gem3 gem3 gem3"
-	"up3 t1_3 t2_3 t3_3 t4_3 altar3 targetPriority3"
-	"down3 t5_3 t6_3 t7_3 t8_3 altar3 switchClass3"
-	"train3 t9_3 t10_3 t11_3 t12_3 altar3 leave3";
+	"up3 t13 t23 t33 t43 altar3 targetPriority3"
+	"down3 t53 t63 t73 t83 altar3 switchClass3"
+	"train3 t93 t103 t113 t123 altar3 leave3";
 	margin: 0px 10px 10px 10px;
 }
 
@@ -168,18 +168,18 @@ body {
 #powerUp3 {grid-area: up3;}
 #powerDown3 {grid-area: down3;}
 #train3 {grid-area: train3;}
-#tower1_3 {grid-area: t1_3;}
-#tower2_3 {grid-area: t2_3;}
-#tower3_3 {grid-area: t3_3;}
-#tower4_3 {grid-area: t4_3;}
-#tower5_3 {grid-area: t5_3;}
-#tower6_3 {grid-area: t6_3;}
-#tower7_3 {grid-area: t7_3;}
-#tower8_3 {grid-area: t8_3;}
-#tower9_3 {grid-area: t9_3;}
-#tower10_3 {grid-area: t10_3;}
-#tower11_3 {grid-area: t11_3;}
-#tower12_3 {grid-area: t12_3;}
+#tower13 {grid-area: t13;}
+#tower23 {grid-area: t23;}
+#tower33 {grid-area: t33;}
+#tower43 {grid-area: t43;}
+#tower53 {grid-area: t53;}
+#tower63 {grid-area: t63;}
+#tower73 {grid-area: t73;}
+#tower83 {grid-area: t83;}
+#tower93 {grid-area: t93;}
+#tower103 {grid-area: t103;}
+#tower113 {grid-area: t113;}
+#tower123 {grid-area: t123;}
 #altar3 {grid-area: altar3;}
 #targetPriority3 {grid-area: targetPriority3;}
 #switchClass3 {grid-area: switchClass3;}
@@ -234,4 +234,5 @@ body {
 	background-image: url("../img/box_bg.png");
 	background-repeat: repeat;
 	margin: 10px 0px 0px 0px;
+	padding: 0px 10px 10px 10px;
 }

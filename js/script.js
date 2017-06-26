@@ -22,11 +22,18 @@ var loginTimeout1;
 var loginTimeout2;
 var loginTimeout3;
 
-var wsGlobal1;
-var wsGlobal2;
-var wsGlobal3;
-
 var sendThroughWhisper = false;
+
+document.addEventListener(`DOMContentLoaded`, function (event) {
+    var _selector = document.querySelector(`input[name=whisperCheckbox]`);
+    _selector.addEventListener(`change`, function (event) {
+      if (_selector.checked) {
+		    	sendThroughWhisper = true;
+		  	} else {
+		    	sendThroughWhisper = false;
+		  	}
+    });
+});
 
 function messageManager (message, ws){
 	var newMessage = `!`.concat(message);
@@ -138,19 +145,22 @@ function classSelectButtonClicked(buttonID){
 	var playerID = buttonID.charAt(buttonID.length - 1);
 	var className = buttonID.substring(0, buttonID.indexOf(`Rank`));
 	// TODO: Find a better way of getting WebSocket than making it global.
-	switch (+playerID) {
-		case 1:
-			messageManager(className, wsGlobal1);
-			break;
-		case 2:
-			messageManager(className, wsGlobal2);
-			break;
-		case 3:
-			messageManager(className, wsGlobal3);
-			break;
-	}
+	messageManager(className, getWebSocket(+playerID));
+
 	document.getElementById(`classSelect` + playerID).style.display = `none`;
 	document.getElementById(`playBoard` + playerID).style.display = `grid`;
+}
+
+function playBoardButtonClicked(buttonID){
+	var playerID = Number(buttonID.charAt(buttonID.length - 1));
+	var actionID = buttonID.substring(0, buttonID.length - 1);
+
+	if(actionID.includes(`tower`)){messageManager(actionID.substring(5, actionID.length), getWebSocket(playerID));}
+  if(actionID.includes(`powerUp`)){messageManager(`p`, getWebSocket(playerID));}
+  if(actionID.includes(`powerDown`)){messageManager(`pd`, getWebSocket(playerID));}
+  if(actionID.includes(`train`)){messageManager(`t`, getWebSocket(playerID));}
+  if(actionID.includes(`altar`)){messageManager(`a`, getWebSocket(playerID));}
+  if(actionID.includes(`leave`)){messageManager(`leave`, getWebSocket(playerID));}
 }
 
 function twitchChatConnectionManager(playerID, playerNick, received_msg) {
@@ -184,7 +194,6 @@ function oauth1 (){
 	document.getElementById(`loadingClasses1`).style.display = `block`;
 
 	var ws1 = new WebSocket(`wss://irc-ws.chat.twitch.tv:443/irc`);
-	wsGlobal1 = ws1;
 
 	var oauth = document.getElementById(`twitchoauth1`).value;
 	var nick = document.getElementById(`twitchusername1`).value.toLowerCase();
@@ -201,6 +210,7 @@ function oauth1 (){
 	ws1.onmessage = function (evt) {
 		twitchChatConnectionManager(1, nick, evt.data);
 	};
+	window.ws1 = ws1;
 }
 
 function oauth2 (){
@@ -210,7 +220,6 @@ function oauth2 (){
 	document.getElementById(`loadingClasses2`).style.display = `block`;
 
 	var ws2 = new WebSocket(`wss://irc-ws.chat.twitch.tv:443/irc`);
-	wsGlobal2 = ws2;
 
 	var oauth = document.getElementById(`twitchoauth2`).value;
 	var nick = document.getElementById(`twitchusername2`).value.toLowerCase();
@@ -227,6 +236,7 @@ function oauth2 (){
 	ws2.onmessage = function (evt) {
 		twitchChatConnectionManager(2, nick, evt.data);
 	};
+	window.ws2 = ws2;
 }
 
 function oauth3 (){
@@ -236,7 +246,6 @@ function oauth3 (){
 	document.getElementById(`loadingClasses3`).style.display = `block`;
 
 	var ws3 = new WebSocket(`wss://irc-ws.chat.twitch.tv:443/irc`);
-	wsGlobal3 = ws3;
 
 	var oauth = document.getElementById(`twitchoauth3`).value;
 	var nick = document.getElementById(`twitchusername3`).value.toLowerCase();
@@ -253,15 +262,16 @@ function oauth3 (){
 	ws3.onmessage = function (evt) {
 		twitchChatConnectionManager(3, nick, evt.data);
 	};
+	window.ws3 = ws3;
 }
 
 function getWebSocket(playerID) {
 	switch (playerID) {
 		case 1:
-			return wsGlobal1;
+			return window.ws1;
 		case 2:
-			return wsGlobal2;
+			return window.ws2;
 		case 3:
-			return wsGlobal3;
+			return window.ws3;
 	}
 }
