@@ -69,7 +69,7 @@ body {
 	display: none;
 }
 
-.classSelect button {
+.classSelect button, .targetPriority button {
 	display: inline-block;
 	padding: 4px;
 	background-color: white;
@@ -220,6 +220,13 @@ body {
 #player3 {
 	grid-area: player3;
 	margin-bottom: 0px;
+}
+
+#targetPriorityDiv1,
+#targetPriorityDiv2,
+#targetPriorityDiv3 {
+	display: none;
+	margin-top: 10px;
 }
 
 .loadingClasses {

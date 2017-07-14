@@ -194,6 +194,25 @@ function classSelectButtonClicked(buttonID){
 	document.getElementById(`playBoard` + playerID).style.display = `grid`;
 }
 
+function targetPriorityButtonClicked(buttonID){
+  var playerID = buttonID.charAt(buttonID.length - 1);
+  var targetPriority = buttonID.substring(0, buttonID.length - 1);
+
+  if (buttonID.includes(`back`)) {
+    document.getElementById(`targetPriorityDiv` + playerID).style.display = `none`;
+    document.getElementById(`playBoard` + playerID).style.display = `grid`;
+  } else {
+    ws = getWebSocket(+playerID);
+
+  	messageManager(targetPriority, ws);
+
+    document.getElementById(`targetPriorityDiv` + playerID).style.display = `none`;
+    document.getElementById(`playBoard` + playerID).style.display = `grid`;
+  }
+}
+
+
+
 function playBoardButtonClicked(buttonID){
 	var playerID = Number(buttonID.charAt(buttonID.length - 1));
 	var actionID = buttonID.substring(0, buttonID.length - 1);
@@ -218,6 +237,11 @@ function playBoardButtonClicked(buttonID){
     document.getElementById(`loadingClasses` + playerID).style.display = `block`;
     document.getElementById(`playerClassNameEssence` + playerID).innerHTML = `(Loading Essence Stats)`;
     document.getElementById(`playerGem` + playerID).innerHTML = `(Loading Gem Stats)`;
+  }
+
+  if(actionID.includes(`targetPriority`)) {
+    document.getElementById(`playBoard` + playerID).style.display = `none`;
+    document.getElementById(`targetPriorityDiv` + playerID).style.display = `block`;
   }
 }
 
