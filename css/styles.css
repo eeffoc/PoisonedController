@@ -85,16 +85,22 @@ body {
 	grid-template-columns: 100px 50px 50px 50px 50px 30px 100px;
   grid-template-rows: 35px 35px 50px 50px 50px;
 	grid-template-areas:
-	"rank1 rank1 rank1 rank1 rank1 rank1 rank1"
-	"gem1 gem1 gem1 gem1 gem1 gem1 gem1"
+	"stats11 stats11 stats11 stats11 stats11 stats11 stats11"
+	"stats21 stats21 stats21 stats21 stats21 stats21 stats21"
 	"up1 t11 t21 t31 t41 altar1 targetPriority1"
 	"down1 t51 t61 t71 t81 altar1 switchClass1"
 	"train1 t91 t101 t111 t121 altar1 leave1";
 	margin: 0px 10px 10px 10px;
 }
 
-#playerRank1 {grid-area: rank1;}
-#playerGem1 {grid-area: gem1;}
+#playBoardStatsLine11 p, #playBoardStatsLine21 p,
+#playBoardStatsLine12 p, #playBoardStatsLine22 p,
+#playBoardStatsLine13 p, #playBoardStatsLine23 p {
+	display: inline;
+}
+
+#playBoardStatsLine11 {grid-area: stats11; align-self: center;}
+#playBoardStatsLine21 {grid-area: stats21; align-self: center;}
 #powerUp1 {grid-area: up1;}
 #powerDown1 {grid-area: down1;}
 #train1 {grid-area: train1;}
@@ -120,16 +126,16 @@ body {
 	grid-template-columns: 100px 50px 50px 50px 50px 30px 100px;
   grid-template-rows: 35px 35px 50px 50px 50px;
 	grid-template-areas:
-	"rank2 rank2 rank2 rank2 rank2 rank2 rank2"
-	"gem2 gem2 gem2 gem2 gem2 gem2 gem2"
+	"stats12 stats12 stats12 stats12 stats12 stats12 stats12"
+	"stats22 stats22 stats22 stats22 stats22 stats22 stats22"
 	"up2 t12 t22 t32 t42 altar2 targetPriority2"
 	"down2 t52 t62 t72 t82 altar2 switchClass2"
 	"train2 t92 t102 t112 t122 altar2 leave2";
 	margin: 0px 10px 10px 10px;
 }
 
-#playerRank2 {grid-area: rank2;}
-#playerGem2 {grid-area: gem2;}
+#playBoardStatsLine12 {grid-area: stats12; align-self: center;}
+#playBoardStatsLine22 {grid-area: stats22; align-self: center;}
 #powerUp2 {grid-area: up2;}
 #powerDown2 {grid-area: down2;}
 #train2 {grid-area: train2;}
@@ -155,16 +161,16 @@ body {
 	grid-template-columns: 100px 50px 50px 50px 50px 30px 100px;
   grid-template-rows: 35px 35px 50px 50px 50px;
 	grid-template-areas:
-	"rank3 rank3 rank3 rank3 rank3 rank3 rank3"
-	"gem3 gem3 gem3 gem3 gem3 gem3 gem3"
+	"stats13 stats13 stats13 stats13 stats13 stats13 stats13"
+	"stats23 stats23 stats23 stats23 stats23 stats23 stats23"
 	"up3 t13 t23 t33 t43 altar3 targetPriority3"
 	"down3 t53 t63 t73 t83 altar3 switchClass3"
 	"train3 t93 t103 t113 t123 altar3 leave3";
 	margin: 0px 10px 10px 10px;
 }
 
-#playerRank3 {grid-area: rank3;}
-#playerGem3 {grid-area: gem3;}
+#playBoardStatsLine13 {grid-area: stats13; align-self: center;}
+#playBoardStatsLine23 {grid-area: stats23; align-self: center;}
 #powerUp3 {grid-area: up3;}
 #powerDown3 {grid-area: down3;}
 #train3 {grid-area: train3;}

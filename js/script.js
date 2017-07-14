@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-var channel = `archonthewizard`;
+var channel = `#archonthewizard`;
 var channelBot = `ttdbot`;
 
 const AWAITING_OAUTH = 0;
@@ -45,15 +45,26 @@ function messageManager (message, ws){
 }
 
 function sendMessage (message, ws){
-	ws.send(`PRIVMSG #` + channel + ` :` + message);
+	ws.send(`PRIVMSG ` + channel + ` :` + message);
 }
 
 function sendWhisper (message, ws){
-	ws.send(`PRIVMSG #` + channel + ` :/w ` + channelBot + ` ` + message);
+	ws.send(`PRIVMSG ` + channel + ` :/w ` + channelBot + ` ` + message);
 }
 
 function getClassRanks (ws){
+  //Whisper only command
 	sendWhisper(`!specs`, ws);
+}
+
+function getEssence (ws){
+  //Whisper only command
+	sendWhisper(`!essence`, ws);
+}
+
+function getGold (ws){
+  //Whisper or global chat command
+	messageManager(`gold`, ws);
 }
 
 function setClassRanks (playerID, playerNick, msg){
@@ -88,6 +99,31 @@ function setClassRanks (playerID, playerNick, msg){
 			clearTimeout(loginTimeout3);
 			break;
 	}
+}
+
+function setEssence(playerID, playerNick, msg) {
+  document.getElementById(`playerUsername` + playerID).innerHTML = playerNick;
+
+  var classNameEssence = msg.substring(msg.indexOf(`Rank`), msg.length);
+  document.getElementById(`playerClassNameEssence` + playerID).innerHTML = classNameEssence;
+}
+
+function setGem(playerID, playerNick, msg) {
+  var playerGemArray = msg.split(`[`);
+  console.log(playerGemArray);
+  for (var i = 0; i < playerGemArray.length; i++) {
+    //Add whitespace to ensure it's that username so that `foo` and `foo1` are not the same
+    if (playerGemArray[i].includes(playerNick + ` `)) {
+      if (i + 1 === playerGemArray.length) { //last element of array has extra space
+        gem = playerGemArray[i].substring(0, playerGemArray[i].length - 3);
+      } else {
+        gem = playerGemArray[i].substring(0, playerGemArray[i].length - 2);
+      }
+    }
+  }
+  //Remove username (nick) from second line
+  gem = gem.substring(playerNick.length + 1, gem.length);
+  document.getElementById(`playerGem` + playerID).innerHTML = gem;
 }
 
 function loginError (playerID, errorID) {
@@ -144,8 +180,15 @@ function errorBack(playerID) {
 function classSelectButtonClicked(buttonID){
 	var playerID = buttonID.charAt(buttonID.length - 1);
 	var className = buttonID.substring(0, buttonID.indexOf(`Rank`));
+
 	// TODO: Find a better way of getting WebSocket than making it global.
-	messageManager(className, getWebSocket(+playerID));
+  ws = getWebSocket(+playerID);
+
+	messageManager(className, ws);
+
+  //Timeout to ensure stream backend registers class selection before requesting essence
+  setTimeout(getEssence, 500, ws);
+  setTimeout(getGold, 1500, ws);
 
 	document.getElementById(`classSelect` + playerID).style.display = `none`;
 	document.getElementById(`playBoard` + playerID).style.display = `grid`;
@@ -160,7 +203,22 @@ function playBoardButtonClicked(buttonID){
   if(actionID.includes(`powerDown`)){messageManager(`pd`, getWebSocket(playerID));}
   if(actionID.includes(`train`)){messageManager(`t`, getWebSocket(playerID));}
   if(actionID.includes(`altar`)){messageManager(`a`, getWebSocket(playerID));}
-  if(actionID.includes(`leave`)){messageManager(`leave`, getWebSocket(playerID));}
+
+  if(actionID.includes(`leave`)) {
+    messageManager(`leave`, getWebSocket(playerID));
+    document.getElementById(`playBoard` + playerID).style.display = `none`;
+    document.getElementById(`oauth` + playerID).style.display = `block`;
+    document.getElementById(`playerClassNameEssence` + playerID).innerHTML = `(Loading Essence Stats)`;
+    document.getElementById(`playerGem` + playerID).innerHTML = `(Loading Gem Stats)`;
+  }
+
+  if(actionID.includes(`switchClass`)) {
+    getClassRanks(getWebSocket(playerID));
+    document.getElementById(`playBoard` + playerID).style.display = `none`;
+    document.getElementById(`loadingClasses` + playerID).style.display = `block`;
+    document.getElementById(`playerClassNameEssence` + playerID).innerHTML = `(Loading Essence Stats)`;
+    document.getElementById(`playerGem` + playerID).innerHTML = `(Loading Gem Stats)`;
+  }
 }
 
 function twitchChatConnectionManager(playerID, playerNick, received_msg) {
@@ -173,6 +231,15 @@ function twitchChatConnectionManager(playerID, playerNick, received_msg) {
 	if(received_msg.includes(channelBot + `.tmi.twitch.tv WHISPER ` + playerNick +` :[Rank `)) {
 		setClassRanks(playerID, playerNick, received_msg);
 	}
+
+  if(received_msg.includes(channelBot + `.tmi.twitch.tv WHISPER ` + playerNick +` :Rank `)) {
+		setEssence(playerID, playerNick, received_msg);
+	}
+
+  if (received_msg.includes(channelBot + `.tmi.twitch.tv PRIVMSG ` + channel + ` :[`)
+    && received_msg.includes(playerNick + ` Gold:`)) {
+    setGem(playerID, playerNick, received_msg);
+  }
 
 	if(received_msg.includes(`Login authentication failed`)) {
 		loginError(playerID, ERROR_WRONG_OAUTH);
